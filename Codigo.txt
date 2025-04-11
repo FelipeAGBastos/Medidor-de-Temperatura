@@ -1,0 +1,36 @@
+#define nm 12
+#define fb 13
+
+ 
+
+void setup(){
+  for (int pin=12; pin<=13; pin++){
+    pinMode(pin, OUTPUT);
+  }
+  
+  Serial.begin (9600);
+  analogReference (EXTERNAL);
+}
+
+ 
+
+void loop(){
+  int binario = analogRead (0);
+  float tensao;
+  
+  tensao = binario*(1.75 / 355);
+  float temp = (tensao -0.5)*100;
+  
+  Serial.println (temp);  
+  
+  if (temp >=38){
+   digitalWrite (nm, LOW); 
+   digitalWrite (fb, HIGH);       
+  }
+  
+  else {
+   digitalWrite (nm, HIGH);
+   digitalWrite (fb, LOW);  
+  }
+    
+}
